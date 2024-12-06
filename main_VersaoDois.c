@@ -227,36 +227,7 @@ arvore* Inserir(arvore* a, int x){
     return a;
 }
 
-int verif_repeticao_x(arvore* a, int x){
-    if(a == NULL)
-        return 1;
 
-    if(a->info == x)
-        if(a->esq != NULL && a->esq->info == x)
-            return 1;
-
-    if(x < a->info)
-        return verif_repeticao(a->esq, x);
-    else
-        return verif_repeticao(a->dir , x);
-}
-
-int verif_repeticao(arvore* a){
-    if(a == NULL)
-        return 0;
-    if(a->esq != NULL)
-        if(a->esq->info == a->info)
-            return 1;
-    if(a->esq != NULL && a->dir != NULL)
-        return verif_repeticao(a->esq) || verif_repeticao(a->dir);
-     else{
-        if(a->esq != NULL)
-            return verif_repeticao(a->esq);
-        else
-            return verif_repeticao(a->dir);
-     }
-
-}
 
 int Igual(arvore* a, arvore* b){
     if(a == NULL && b == NULL)
@@ -273,61 +244,7 @@ int Igual(arvore* a, arvore* b){
         return 0;
 }
 
-int VerifAlturaNegra(ArvoreRN* a){
-    if(a == NULL)
-        return 0;
-    int he = VerifAlturaNegra(a->esq);
-    int hd = VerifAlturaNegra(a->dir);
 
-    if(a->cor == 'p'){
-        if(he > hd)
-            return he+1;
-        else
-            return hd+1;
-    }
-    else{
-        if(he > hd)
-            return he;
-        else
-            return hd;
-    }
-}
-
-int VerifAlturaNegra2(ArvoreRN* a){
-    if(a == NULL)
-        return 1;
-    if(VerifAlturaNegra(a->esq) == VerifAlturaNegra(a->dir) )
-        return 1 && (VerifAlturaNegra2(a->esq) && VerifAlturaNegra2(a->dir));
-    else
-        return 0;
-}
-
-int verifica_altura_negra(ArvoreRN* a){
-    if(a == NULL)
-        return 0;
-    int he = verifica_altura_negra(a->esq);
-    int hd = verifica_altura_negra(a->dir);
-
-    if(a->cor == 'p'){
-        if(he == hd)
-            return he+1;
-        else
-            return 0;
-    }
-    else{
-        if(he == hd)
-            return he;
-        else
-            return 0;
-    }
-}
-
-int verifica_altura_negra2(ArvoreRN* a){
-    if(a == NULL)
-        return 0;
-    else
-        return verifica_altura_negra(a) != 0;
-}
 
 int ocorrencias(arvore* a, int x){
     if(a == NULL)
